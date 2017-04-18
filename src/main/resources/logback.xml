@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
+<!-- 日志输出规则：根据当前ROOT 级别，日志输出时，级别高于root默认的级别时会输出 -->
+
+<!--设置日志记录方式 以及是否扫描配置文件变化，扫描间隔时间(milliseconds/seconds/minutes/hours)-->
+<configuration debug="false" scan="true" scanPeriod="2 minutes">
+    <!--定义变量-->
+    <property name="projectName" value="VMEMRest"/>
+    <property name="logPath" value="./logs/vm-easemob-rest.log"/>
+
+    <!--设置 Logback 上下文名称-->
+    <contextName>${projectName}</contextName>
+
+    <!--状态监听器-->
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener"/>
+
+    <!--配置 console （控制台输出）appender-->
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="console">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <encoder>
+            <!--定义日志输出格式-->
+            <pattern>%d{HH:mm:ss.SSS} |-%-5level [%thread] %logger{64}[line:%line] --- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--配置 file （控制台输出）appender-->
+    <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="file">
+        <file>${logPath}</file>
+        <!--定义日志压缩文件命名方式-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}.%d{yyyy-MM-dd}.zip</fileNamePattern>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <!--设置日志历史保存时间-->
+        <maxHistory>30</maxHistory>
+        <encoder>
+            <!--定义日志输出格式-->
+            <pattern>%date |-%-5level [%thread] %logger{64}[line:%line] --- %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--定义输出日志等级-->
+    <root level="debug">
+        <appender-ref ref="console"/>
+        <appender-ref ref="file"/>
+    </root>
+</configuration>
