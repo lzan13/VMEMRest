@@ -16,5 +16,5 @@ dependencies {
     compile 'ch.qos.logback:logback-classic:1.2.3'
 
     // 环信 rest sdk
-    compile 'com.easemob:rest-java-sdk:1.0.0'
+    compile 'com.easemob:rest-java-sdk:1.0.1'
 }
