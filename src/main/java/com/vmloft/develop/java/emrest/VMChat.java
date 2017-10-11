@@ -7,6 +7,7 @@ import io.swagger.client.model.Msg;
 
 /**
  * Created by lzan13 on 2017/4/20.
+ * 聊天相关的操作类，包含发送消息以及获取聊天记录
  */
 public class VMChat {
     private ChatHistoryApi chatHistoryApi = new ChatHistoryApi();

@@ -29,6 +29,7 @@ public class VMTokenAPI {
      */
     public static void initToken() {
         try {
+            authAPI.getApiClient().setBasePath(VMConfig.EM_BASE_URL);
             String resp = authAPI.orgNameAppNameTokenPost(VMConfig.EM_ORG_NAME, VMConfig.EM_APP_NAME, VMConfig.tokenBody);
             logger.info("请求结果：" + resp);
             Gson gson = new Gson();

@@ -1,5 +1,6 @@
 package com.vmloft.develop.java.emrest;
 
+import io.swagger.client.ApiClient;
 import io.swagger.client.model.Token;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ public class VMConfig {
     // 初始化 Logger
     private static Logger logger = LoggerFactory.getLogger(VMConfig.class);
 
+    public static String EM_BASE_URL;
     public static String EM_ORG_NAME;
     public static String EM_APP_NAME;
     public static String EM_GRANT_TYPE;
@@ -32,6 +34,7 @@ public class VMConfig {
         } catch (IOException e) {
             logger.error(e.getMessage());
         }
+        EM_BASE_URL = prop.getProperty("EM_BASE_URL");
         EM_ORG_NAME = prop.getProperty("EM_ORG_NAME");
         EM_APP_NAME = prop.getProperty("EM_APP_NAME");
         EM_GRANT_TYPE = prop.getProperty("EM_GRANT_TYPE");

@@ -3,4 +3,5 @@
 build
 logs
 out
+libs
 src/main/resources/config.properties
